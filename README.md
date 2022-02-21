@@ -40,3 +40,9 @@ Con finalidad de tener un timing de trabajo amplio he decidido distribuir los ob
 5.	Implementación Servidor Foreman + documentación (25-04|02-05/01-05|08-05)
 6.	Investigación SIEM Snort (02-05|9-05/10-05|16-05|22-05).
 7.	Implementación + fin de documentación (Hasta presentación de proyecto).
+
+
+# Posible expansion/es al proyecto
+
+1. Utilizar Software Terraform para poder convertir el proyecto en producto vendible.
+2. ...
