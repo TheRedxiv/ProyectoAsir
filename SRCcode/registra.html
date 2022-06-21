@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        Usuario<input type="text" name="user" id="user" onchange="nombre()"><br>
+        <p style="color:red" id="alerta" display="none"></p>
+        Contraseña<input type="text" name="pass" id="pass"><br>
+        <button  id="conectarse" onclick="registrar()">registrar</button>
+        <form action="iniciasesion.php" method="get">
+            <input type="submit" value="Inicio de sesion">
+        </form>
+</body>
+<script>
+    function nombre (){
+        var user = document.getElementById("user").value
+        var ayax = new XMLHttpRequest()
+        ayax.onload = function(){
+            console.log(this.responseText)
+            if (this.responseText == "Y"){
+                document.getElementById("alerta").innerHTML= "Ya existe un usuario con ese nombre";
+                document.getElementById("conectarse").disabled = true;
+            }else{
+                document.getElementById("alerta").innerHTML= "";
+                document.getElementById("conectarse").disabled = false;
+            }
+        }
+        ayax.open("POST", "revisaUser.php")
+        ayax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ayax.send("user="+user)
+    }
+    
+    function registrar(){
+        var user = document.getElementById("user").value
+        var pass = document.getElementById("pass").value
+        var ayax = new XMLHttpRequest()
+        ayax.onload = function(){
+            console.log(this.responseText)
+            if (this.responseText == "Y"){
+                window.alert("Usuario registrado")
+                window.location.href="iniciasesion.php"
+            }else{
+                window.alert("no se pudo registrar al usuario");
+            }
+        }
+        ayax.open("POST", "registra.php")
+        ayax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        ayax.send("pass="+pass+"&user="+user)
+    }
+</script>
+</html>
